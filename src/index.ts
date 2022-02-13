@@ -1,50 +1,33 @@
-// 类型保护（更好的去识别类型） js本身就有类型识别功能 typeof instanceof in
+import $ from 'jquery';
+import png from 'a.png';
+import vue from 'a.vue';
+// declare module 'jquery'
+// npm i --save-dev @types/jquery 很多第三方模块 都已经有人写好了声明文件 （声明文件目的是让不支持ts的模块也能有语法提示）
+import axios from 'axios';
 
-function getV(val:string | number){
-  if(typeof val === 'string'){
-    val.split('')
-  }else {
-    val.toFixed()
+// 默认先查找node_modules 某个模块下是否有types字段，如果模块本身没有types字段会查找index.d.ts
+// 当前代码会自助去查找node_modules 下@/types下的文件，jquery -》 默认会去查找 index.d.ts
+// 如果没有文件，可以配置include变量 包含需要的ts文件
+
+// import export es6语法 / export = 和 import语法 node中使用
+// 默认全部使用import 和 export即可
+// 对于自定义文件 需要自己配置 path属性 "baseUrl": "./"
+import r = require('./a');
+// import r from './a'
+
+vue.Component;
+
+
+declare let age: number;
+declare class Person {};
+declare function fn():void;
+declare interface Ixx {};
+
+declare namespace aa {
+  namespace extend{
+    function eat():void
   }
 }
 
-class Person {}
-class Animal {}
-
-function getV1(val:Person | Animal){ // 描述实例的
-  if(val instanceof Person){
-    val
-  }else {
-    val
-  }
-}
-
-
-// 根据是否包含某个属性来区分 Fish 游泳 | Bird 飞
-
-interface Fish {
-  swiming: string
-}
-interface Bird {
-  fly: string;
-}
-
-function getV2 (val: Fish | Bird){
-  if('swiming' in val){
-    val.swiming
-  }else {
-    val.fly
-  }
-}
-
-
-// ts里面也有自己的概念 可辨识的类型
-
-
-
-
-
-
-
-// Extract Exclude / Omit Pick
+aa.extend.eat
 export {};

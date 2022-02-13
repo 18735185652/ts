@@ -37,7 +37,7 @@ interface Water {
 // ts中有一个条件分发的概念 联合类型才会发生条件分发
 type MyType<T> = T extends Bird ? Sky : Water; // 条件类型就是三元表达式
 
-type MyBird = MyType<Bird | Fish>; // water ｜ sky
+type MyBird = MyType<Bird | Fish>; // sky｜ water
 
 // ts中自带的类型
 
@@ -69,6 +69,7 @@ interface IPerson {
 // 让属性都变成可选属性
 type Partial<T> = {[K in keyof T]?:T[K]};
 type DeepPartial<T> = {[K in keyof T]?: T[K] extends object ? DeepPartial<T[K]>: T[K]}
+
 
 type MyPartial = DeepPartial<IPerson>;
 
